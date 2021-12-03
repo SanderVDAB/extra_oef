@@ -169,8 +169,9 @@ console.log('\u20AC penis');
 
 //array.js
 
-var keuze = [0, 1, 2];
-for (var i = 1; i < 3; i++) {
-   console.log(keuze[i % 3] === 1);
-}
-
+// var keuze = [0, 1, 2];
+// for (var i = 1; i < 3; i++) {
+//    console.log(keuze[i % 3] === 1);
+// }
+var naam = 1
+console.log(`"${naam}"`)

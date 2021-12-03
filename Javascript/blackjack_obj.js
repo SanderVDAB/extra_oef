@@ -1,4 +1,4 @@
-var rls = require("readline-sync");
+// var rls = require("readline-sync");
 
 class Kaart {
    constructor(teller) {
@@ -30,8 +30,6 @@ class Kaart {
 
 class Blackjack {
    deck = [];
-   kaarten_speler = [];
-   kaarten_dealer = [];
 
    constructor() {
       for (var i = 0; i < 14; i++) {
@@ -74,23 +72,54 @@ class Blackjack {
       return resultaat;
    }
 
+   extraKaart(huidig_deck, index, kaarten) {
+      kaarten.push(huidig_deck[index]);
+      index++;
+   }
+
    blackJack() {
       var huidig_deck = this.randomize();
+      kaarten_speler = [];
+      kaarten_dealer = [];
       var score_speler = 0;
       var score_dealer = 0;
       var aantal = 0;
-      huidig_deck[0] = new Kaart(0);
-      huidig_deck[2] = new Kaart(0);
+      // huidig_deck[0] = new Kaart(0);
+      // huidig_deck[2] = new Kaart(0);
       while (aantal < 4) {
-         this.kaarten_speler.push(huidig_deck[aantal]);
+         kaarten_speler.push(huidig_deck[aantal]);
          // this.kaarten_speler.push(new Kaart(0));
-         score_speler = this.aasCheck(huidig_deck[aantal], score_speler, this.kaarten_speler);
+         score_speler = this.aasCheck(huidig_deck[aantal], score_speler, kaarten_speler);
          aantal++
-         this.kaarten_dealer.push(huidig_deck[aantal]);
-         score_dealer = this.aasCheck(huidig_deck[aantal], score_dealer, this.kaarten_dealer);
+         kaarten_dealer.push(huidig_deck[aantal]);
+         score_dealer = this.aasCheck(huidig_deck[aantal], score_dealer, kaarten_dealer);
          aantal++;
       }
       console.log("speler:", this.returnKaarten(this.kaarten_speler), "\ndealer:", this.returnKaarten(this.kaarten_dealer), "\nscore_speler:", score_speler, "\nscore_dealer:", score_dealer);
+      if (score_dealer == 21) {
+         console.log("Blackjack, the house always wins");
+         console.log("Je verliest je €10 maar je krijgt €10 terug als je ook 21/Blackjack haalt");
+      }
+      else if (score_speler == 21) {
+         console.log("Blackjack, wacht op resultaat dealer");
+         if (score_dealer == 21) {
+            console.log("Je krijgt je €10 terug");
+         }
+         console.log("Je wint €25")
+      }
+      else if (score_dealer > 21) {
+         console.log("De dealer is verloren met een score:", score_dealer);
+      }
+      while (score_speler < 21) {
+         var antwoord = rls.keyIn("Wil je hitten? Y/N\n");
+         if (antwoord == "Y" || antwoord == "y") {
+            this.extraKaart(huidig_deck, aantal, this.kaarten_speler);
+         }
+         else if (antwoord == "N" || antwoord == "n") {
+
+         }
+
+      }
       console.log(this.returnId(huidig_deck)); //controle
       // return huidig_deck
    }
