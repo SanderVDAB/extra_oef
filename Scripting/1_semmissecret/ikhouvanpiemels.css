@@ -1,0 +1,14 @@
+p{
+   color: hotpink
+}
+
+
+body{
+   height: 1000px;
+   font-size: 50px;
+
+   background-image: url(./cover.jpg);
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+}
