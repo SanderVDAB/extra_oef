@@ -1,0 +1,192 @@
+/* digitale klok */
+*{
+   padding: 0;
+   margin: 0;
+   /* box-sizing: border-box; */
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#digitale_klok{
+   width: fit-content;
+   margin: 0 auto;
+   display: flex;
+   display: none; /**/
+   flex-direction: column;
+   justify-content: center;
+}
+
+#achtergrond{
+   width: 200px;
+   height: 100px;
+   margin: 0 auto;
+   background-color: hotpink;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+button{
+   width: fit-content;
+   display: flex;
+   align-self: center;
+}
+
+#klok{
+   width: fit-content;
+   background-color: yellow;
+}
+
+/* galgje */
+body{
+   background-color: black;
+   color: green;
+}
+
+#galgje{
+   width: fit-content;
+   margin: 0 auto;
+}
+
+#galg{
+   position: relative;
+   width: 300px;
+   height: 340px;
+   border: 1px solid green;
+}
+
+#midden{
+   display: flex;
+}
+
+#mannetje{
+   margin: 0 auto;
+   width: fit-content;
+   height: fit-content;
+   flex-direction: column;
+   display: flex;   
+}
+
+#body{
+   display: flex;
+}
+
+#benen{
+   display: flex;
+}
+
+#horizontaal_onderaan{
+   display: none;
+   position: absolute;
+   background-color: green;
+   width: 300px;
+   height: 20px;
+   top: 320px;
+}
+
+#verticaal{
+   display: none;
+   /* display: flex; */
+   position: absolute;
+   background-color: green;
+   width: 20px;
+   height: 300px;
+   top: 20px;
+}
+
+#horizontaal_bovenaan{
+   display: none;
+   background-color: green;
+   width: 165px;
+   height: 20px;   
+}
+
+#touw{
+   display: none;
+   background-color: green;
+   width: 10px;
+   height: 50px;
+   margin: 0px 40px;
+}
+
+#hoofd{
+   display: none;
+   background-color: green;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   margin: 0px 20px;
+}
+
+#torso{
+   display: none;
+   background-color: green;
+   width: 50px;
+   height: 100px;
+}
+
+#armL{
+   display: none;
+   background-color: green;
+   width: 20px;
+   height: 75px;
+   transform: rotate(45deg);
+}
+
+#armR{
+   display: none;
+   background-color: green;
+   width: 20px;
+   height: 75px;
+   transform: rotate(-45deg);
+}
+
+#beenL{
+   display: none;
+   background-color: green;
+   width: 20px;
+   height: 75px;
+   transform: rotate(25deg);
+   margin-top: -10px;
+   margin-left: 5px;
+}
+
+#beenR{
+   display: none;
+   background-color: green;
+   width: 20px;
+   height: 75px;
+   transform: rotate(-25deg);
+   margin-top: -10px;
+   margin-left: 40px;
+}
+
+#woord{
+   width: fit-content;
+   margin: 0 auto;
+}
+
+#input{
+   display: flex;
+   justify-content: center;
+   margin: 20px 0px;
+}
+
+input{
+   width: 50px;
+   margin: 0 auto;j
+}
+
+#input img{
+   width: 300px;
+}
+
+#input button{
+   margin: 0 auto;
+   background-color: green;
+   border: 2px solid green;
+}
+
+.spatie{
+   margin-left: 15px;
+}
+

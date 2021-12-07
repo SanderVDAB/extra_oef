@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <link rel="stylesheet" href="./dag4.css">
+</head>
+<body>
+   <!-- digitale klok -->
+   <div id="digitale_klok">
+      <div id="achtergrond">
+         <div id="klok"></div>
+      </div>
+      <button id="button">Stop de tijd</button>
+   </div>
+
+   <!-- galgje -->
+   <div id="galgje">
+      <div id="woord">test</div>
+      <div id="galg">
+         <div id="horizontaal_bovenaan"></div>
+         <div id="midden">
+            <div id="verticaal"></div>
+            <div id="mannetje">
+               <div id="touw"></div>
+               <div id="hoofd"></div>
+               <div id="body">
+                  <div id="armL"></div>
+                  <div id="torso"></div>
+                  <div id="armR"></div>
+               </div>
+               <div id="benen">
+                  <div id="beenL"></div>
+                  <div id="beenR"></div>
+               </div>
+            </div>
+         </div>
+         <div id="horizontaal_onderaan"></div>
+      </div>
+      <div id="input">
+         <label for="letter">Geef een letter in: </label>
+         <input type="text" maxlength="1" id="letter">
+         <button type="submit" id="button2">Enter</button>
+      </div>
+      <div id="gebruikte_letters"></div>
+      <div id="al_geweest"></div>
+   </div>
+   
+
+   <script src="./dag4.js"></script>
+</body>
+</html>
