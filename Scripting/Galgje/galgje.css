@@ -45,9 +45,12 @@ body{
 #galgje{
    width: fit-content;
    margin: 0 auto;
+   display: flex;
+   flex-direction: column;
 }
 
 #galg{
+   margin: auto;
    position: relative;
    width: 300px;
    height: 340px;
@@ -118,6 +121,7 @@ body{
 }
 
 #torso{
+   margin: 0 auto;
    display: none;
    background-color: green;
    width: 50px;
@@ -161,19 +165,24 @@ body{
 }
 
 #woord{
-   width: fit-content;
+   /* width: fit-content; */
    margin: 0 auto;
 }
 
 #input{
-   display: flex;
-   justify-content: center;
+   width: fit-content;
+   /* margin: 0 auto; */
+   /* display: flex; */
+   align-self: center;
    margin: 20px 0px;
 }
 
-input{
+#input input{
    width: 50px;
-   margin: 0 auto;j
+}
+
+#input p{
+   text-align: center;
 }
 
 #input img{
@@ -181,12 +190,15 @@ input{
 }
 
 #input button{
-   margin: 0 auto;
    background-color: green;
    border: 2px solid green;
 }
 
 .spatie{
    margin-left: 15px;
+}
+
+#tekst{
+   text-align: center;
 }
 

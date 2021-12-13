@@ -1,107 +1,134 @@
 //array
 var arr = ["wouter", "heeft", "graag"];
 
+var array = document.getElementById("array");
 var msg = document.getElementById("msg");
 var vooraanPlus = document.getElementById("vooraanPlus");
-vooraanPlus.addEventListener("click", function () {
-   var input = document.getElementById("voegtoe").value;
-   arr.unshift(input.toLowerCase());
-   msg.innerHTML = `<p>De array is: ${arr.join(", ")}</p><p>Lengte Array: ${arr.length}</p>`
-})
 var vooraanMin = document.getElementById("vooraanMin");
+var achteraanPlus = document.getElementById("achteraanPlus");
+var achteraanMin = document.getElementById("achteraanMin");
+var reverse = document.getElementById("reverse");
+var alfabetisch = document.getElementById("alfabetisch");
+
+function inner(sort) {
+   msg.innerHTML = `<p>De array is: ${arr.join(", ")}</p><p>Lengte Array: ${arr.length}</p>`
+   if (sort === true) {
+      msg.innerHTML = `<p>De array is: ${arr.sort().join(", ")}</p><p>Lengte Array: ${arr.length}</p>`
+   }
+}
+
+function getInput() {
+   var input = document.getElementById("voegtoe").value;
+   return input.toLowerCase();
+}
+
+window.addEventListener("load", () => inner());
+vooraanPlus.addEventListener("click", function () {
+   arr.unshift(getInput());
+   inner();
+})
 vooraanMin.addEventListener("click", function () {
    arr.shift();
-   msg.innerHTML = `<p>De array is: ${arr.join(", ")}</p><p>Lengte Array: ${arr.length}</p>`
+   inner();
 })
-var achteraanPlus = document.getElementById("achteraanPlus");
 achteraanPlus.addEventListener("click", function () {
-   var input = document.getElementById("voegtoe").value;
-   arr.push(input.toLowerCase());
-   msg.innerHTML = `<p>De array is: ${arr.join(", ")}</p><p>Lengte Array: ${arr.length}</p>`
+   arr.push(getInput());
+   inner();
 })
-var achteraanMin = document.getElementById("achteraanMin");
 achteraanMin.addEventListener("click", function () {
    arr.pop();
-   msg.innerHTML = `<p>De array is: ${arr.join(", ")}</p><p>Lengte Array: ${arr.length}</p>`
+   inner();
 })
-var reverse = document.getElementById("reverse");
 reverse.addEventListener("click", function () {
    arr.reverse();
-   msg.innerHTML = `<p>De array is: ${arr.join(", ")}</p><p>Lengte Array: ${arr.length}</p>`
+   inner();
 })
-var alfabetisch = document.getElementById("alfabetisch");
 alfabetisch.addEventListener("click", function () {
-   msg.innerHTML = `<p>De array is: ${arr.sort().join(", ")}</p><p>Lengte Array: ${arr.length}</p>`
+   inner(true);
 })
 
 //schaar steen papier
 var schaar = document.getElementById("schaar");
-schaar.addEventListener("click", () => vergelijk(0));
 var steen = document.getElementById("steen");
-steen.addEventListener("click", () => vergelijk(1));
 var papier = document.getElementById("papier");
-papier.addEventListener("click", () => vergelijk(2));
+var score_HTML = document.getElementById("score_HTML");
 var output_text = document.getElementById("output_text");
-var output_vergelijking = document.getElementById("output_vergelijking");
+var dezeronde = document.getElementById("dezeronde");
 var winnaar = document.getElementById("winnaar");
 var einde = document.getElementById("einde");
+var innereinde = document.getElementsByClassName("einde")
+var score_speler = 0;
+var score_computer = 0;
 
-function keuzeComputer(keuze) {
-   var keuze_computer = keuze[Math.floor(Math.random() * keuze.length)];
-   return keuze_computer
+function returnfoto(keuze) {
+   switch (keuze) {
+      case "schaar":
+         return `<img src="./img/schaar.png" alt="schaar.png" id="schaar">`
+      case "steen":
+         return `<img src="./img/steen.png" alt="steen.png" id="steen">`
+      case "papier":
+         return `<img src="./img/papier.png" alt="papier.png" id="papier">`
+   }
 }
 
 function verander(keuze_speler, keuze_computer, teken) {
-   output_text.innerHTML = ("<p>De speler heeft " + keuze_speler + " en de computer had " + keuze_computer + "</p>");
-   output_vergelijking.innerHTML = ("<p>" + keuze_speler + teken + keuze_computer + "</p>");
+   output_text.innerHTML = "<p>De speler heeft " + keuze_speler + " en de computer had " + keuze_computer + "</p>";
+   dezeronde.innerHTML = `${returnfoto(keuze_speler)}<div id="teken"><p>${teken}</p></div>${returnfoto(keuze_computer)}`;
 }
 
-var score_speler = 0;
-var score_computer = 0;
-function vergelijk(getal_speler) {
-   var keuze = ["schaar", "steen", "papier"];
-   var keuze_speler = "";
-   var keuze_computer = "";
-   var keuze_speler = keuze[getal_speler];
-   var keuze_computer = keuzeComputer(keuze);
-   var getal_computer = keuze.indexOf(keuze_computer); //keuze_computer.indexOf(keuze_computer);
-   speler_wint = false;
-   computer_wint = false;
-   console.log(keuze_speler, getal_speler, keuze_computer, getal_computer);
-   if (keuze[(getal_speler + 1) % 3] === keuze[getal_computer]) {
-      computer_wint = true;
+function score() {
+   score_HTML.innerHTML = `<img src="./img/User.png" alt="">
+      <div id="score"><p>${score_speler} : ${score_computer}</p></div>
+      <img src="./img/computer.png" alt="">`
+   if (winnaar.innerHTML === "") {
+      winnaar.innerHTML = `Kies een optie`;
    }
-   if (keuze[(getal_speler + 2) % 3] === keuze[getal_computer]) {
-      speler_wint = true;
-   }
-   if (speler_wint === computer_wint) {
-      verander(keuze_speler, keuze_computer, " = ")
-      winnaar.innerHTML = ("<p>Speel opnieuw om de winnaar te kennen!</p>");
-   }
-   else if (computer_wint === true) {
-      verander(keuze_speler, keuze_computer, " < ")
-      winnaar.innerHTML = ("<p>Computer wint</p>");
-      score_computer++;
-   }
-   else {
-      verander(keuze_speler, keuze_computer, " > ")
-      winnaar.innerHTML = ("<p>Speler wint</p>");
-      score_speler++;
-   }
-   if (score_computer + score_speler < 5 && score_speler !== 3 && score_computer !== 3) {
+}
+
+function eindeRonde() {
+   if (score_speler !== 3 && score_computer !== 3) {
       score();
    }
    else {
       if (score_computer > score_speler) {
-         einde.innerHTML = `<h3>GAME OVER - Computer wint</h3><img src=./img/sad.jpg alt=happy></img><br><button onClick=history.go(0);>opnieuw</button>`
+         score();
+         einde.innerHTML = `<div class="einde"><h3>GAME OVER - Computer wint</h3><img src=./img/sad.png alt=sad></img><br><button onClick=history.go(0);>opnieuw</button></div>`
+         einde.style.backgroundColor = "red";
       }
       else {
-         einde.innerHTML = `<h3>GAME OVER - Speler wint</h3><img src=./img/happy.png alt=happy></img><br><button onClick=history.go(0);>opnieuw</button>`
+         score();
+         einde.innerHTML = `<div class="einde"><h3>WIN - Speler wint</h3><img src=./img/happy.png alt=happy></img><br><button onClick=history.go(0);>opnieuw</button></div>`
+         einde.style.backgroundColor = "green";
       }
    }
 }
 
-function score() {
-   speler.innerHTML = ("<p>Score speler: " + score_speler + "</p>");
-   computer.innerHTML = ("<p>Score computer: " + score_computer + "</p>");
+function vergelijk(getal_speler) {
+   array.style.display = "none";
+   var keuze = ["schaar", "steen", "papier"];
+   var getal_computer = Math.floor(Math.random() * keuze.length);
+   var keuze_speler = keuze[getal_speler];
+   var keuze_computer = keuze[getal_computer];
+
+   if ((getal_speler + 1) % 3 === getal_computer) {
+      verander(keuze_speler, keuze_computer, " < ")
+      winnaar.innerHTML = "<p>Computer wint</p>";
+      score_computer++;
+   }
+   else if ((getal_speler + 2) % 3 === getal_computer) {
+      verander(keuze_speler, keuze_computer, " > ")
+      winnaar.innerHTML = "<p>Speler wint</p>";
+      score_speler++;
+   }
+   else {
+      verander(keuze_speler, keuze_computer, " = ");
+      winnaar.innerHTML = "<p>Speel opnieuw om de winnaar te kennen!</p>";
+   }
+
+   eindeRonde(getal_speler, getal_computer)
 }
+
+window.addEventListener("load", () => score())
+schaar.addEventListener("click", () => vergelijk(0));
+steen.addEventListener("click", () => vergelijk(1));
+papier.addEventListener("click", () => vergelijk(2));
