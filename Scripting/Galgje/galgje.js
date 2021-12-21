@@ -1,59 +1,3 @@
-//digitale klok
-var klok = document.getElementById("klok");
-var button = document.getElementById("button");
-var click = 0;
-var t;
-
-function nulAanvullen(getal) {
-   var nummer = parseInt(getal);
-   if (nummer < 10) {
-      return `0${getal}`;
-   }
-   return getal
-}
-
-function klokGeneren() {
-   if (click == 0) {
-      klok.innerHTML = `Tijd opvragen`;
-   }
-   else if (click == 1) {
-      var datum = new Date();
-      var hours = nulAanvullen(datum.getHours());
-      var minutes = nulAanvullen(datum.getMinutes());
-      var seconds = nulAanvullen(datum.getSeconds());
-      klok.innerHTML = `${hours} : ${minutes} : ${seconds}`; //klok.innerHTML =      
-      t = setTimeout(klokGeneren, 1000);
-   }
-   else if (click == 2) {
-      var hours = nulAanvullen(datum.getHours());
-      var minutes = nulAanvullen(datum.getMinutes());
-      var seconds = nulAanvullen(datum.getSeconds());
-      klok.innerHTML = `${hours} : ${minutes} : ${seconds}`;
-   }
-}
-
-function klokf(getal) {
-   if (getal == 0) {
-      click = 0;
-      klokGeneren();
-   }
-   else if (getal == 1) {
-      clearTimeout(t);
-      click = 1;
-      klokGeneren();
-   }
-   else if (getal == 2) {
-      clearTimeout(t);
-      click = 2;
-      klokGeneren();
-   }
-}
-
-window.addEventListener("load", () => klokf(0));
-klok.addEventListener("click", () => klokf(1));
-button.addEventListener("click", () => klokf(2));
-
-//galgje
 var woord = document.getElementById("woord");
 var horizontaal_onderaan = document.getElementById("horizontaal_onderaan");
 var horizontaal_bovenaan = document.getElementById("horizontaal_bovenaan");
@@ -72,7 +16,6 @@ var al_geweest = document.getElementById("al_geweest");
 var tekst = document.getElementById("tekst");
 
 class Galgje {
-
    randomWoord() {
       var woorden = ["schachtentemmer", "Koepuur", "tetten", "worsten", "willies en marjetten", "bier", "orval", "KILA", "tak", "kat", "pot", "hol", "map", "mat", "pingpong", "schaken", "ine", "patatje", "plezier", "clublied", "hol", "hal", "man", "gat", "nee", "min", "zit", "miauw", "Gent", "Vlaanderen", "Wallonië", "Berlijn", "Zweden", "panamakanaal", "rodenbach", "foeder", "vat", "graventeenfeesten", "overpoort", "pallieter", "mega", "gutenberg", "galabal", "SK ghendt", "DB", "rodenbach vintage", "facebook", "youtube", "twitter", "gestapo knallmuzik", "ricard", "tequila", "Koen Barbez", "Sarah Vanbesien", "Giliam Agten", "baktafel", "doop", "schacht", "look", "shotje", "confrater", "pere total", "DMD", "alex agnew", "nerfgeweer", "limburg", "jukebox", "DJ Nytril", "ribben", "karaoke", "troela", "prosit senior", "zevensprong", "cantus", "Koepuur", "zetel", "jaguar", "hotel", "klok", "rekenmachine", "Groots Ribbetjesfestijn", "online cantus", "negerinnetetten", "pictionary", "laptop", "quarantaine", "paus", "zwarte piet", "mango", "banaan", "appelboom", "boomgaard", "slap a cup", "aiki", "vork", "muis", "schaar", "bos", "trein", "lego", "wifi", "chrome", "Hersenpan", "Popcorn", "Eiland", "Kerstman", "Nestel", "Tandenborstel", "Visserskraam", "Plastic", "Cola", "Computermuis", "Winkelwagen", "Frankrijk", "Afzuigkap", "Prikbord", "Ezel", "Koptelefoon", "Hotdog", "Stoplicht", "Stopcontact", "Waxinelichtje", "Lucifer", "Hout", "Printer", "Bloembol", "Afstandsbediening", "Deurklink", "Verwarming", "Koffiezetapparaat", "Wcborstel", "Kruiwagen", "Wc ontstopper", "Zonnebril", "Nagellak", "Reuzenrad", "Zoutvat", "borsten", "Pepermolen", "Krabpaal", "Wasknijper", "WC", "Luier", "Afstandsbediening", "Agenda", "Stift", "Boterham", "Keukenrolhouder", "Kapstok", "Lantaarnpaal", "Trainingsbroek", "Gordijnen", "Brooddoos", "Prullenbak", "Computer", "Putdeksel", "Dreft", "Papier", "Eland", "Rolstoel", "Lampion", "Achtbaan", "Engel", "Loopneus", "Slee", "dildo", "bikomkommer", "troela", "sekspop", "paashaasschaamhaarverzamelaar", "nazi", "hakenkruis", "pils", "bier", "lantaarnpaal", "nagel", "elektrische fiets", "neger", "negerin", "wortel", "kiwi", "rascist", "doodskop", "skelet", "tetten", "alien", "fazant", "lesbische orgie", "indiaan", "torens", "ravijn", "vulkaan", "controle", "oren", "hond", "console", "teelbal", "anus", "klierkoorts"];
       return woorden[Math.floor(Math.random() * woorden.length)].toLowerCase().split("");

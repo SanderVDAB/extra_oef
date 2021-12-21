@@ -1,4 +1,3 @@
-/* digitale klok */
 *{
    padding: 0;
    margin: 0;
@@ -6,6 +5,7 @@
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+/* digitale klok */
 #digitale_klok{
    width: fit-content;
    margin: 0 auto;
