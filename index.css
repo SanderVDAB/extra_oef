@@ -51,7 +51,8 @@ main {
    height: 300em;
    position: fixed;
    top: 3em;
-   bottom: 1em;   
+   bottom: 1em;  
+   padding: 2em; 
 }
 
 footer {
