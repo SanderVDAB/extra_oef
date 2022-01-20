@@ -9,15 +9,24 @@
    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-   <a href="./Scripting/RPS/RPS.html">Schaar Steen Papier</a>
-   <a href="./Scripting/Galgje/galgje.html">Galgje</a>
-   
-
-   <div id="RPS">
-      <div class="wrap">
-            <iframe src="./Scripting/RPS/RPS.html" frameborder="0" width="150px" height="100px" id="test"></iframe>
+   <header>
+      <div id="logo" onclick="window.location.href = './index.html'">
+         <img src="./img/logo.png" alt="logo">
       </div>
-   </div>
+   </header>
+
+   <main>
+      <div class="spel" id="RPS">
+         <img src="./img/" alt="">
+      </div>
+      <button class="openspel"></button>
+      <a href="./Scripting/RPS/RPS.html">Schaar Steen Papier</a>
+      <a href="./Scripting/Galgje/galgje.html">Galgje</a>
+   </main>
+   
+   <footer>
+      <p>&copy;<span id="year"></span> Created by Sander</p>
+   </footer>
 
    <script src="./index.js"></script>
 </body>

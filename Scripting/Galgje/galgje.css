@@ -3,6 +3,7 @@
    margin: 0;
    /* box-sizing: border-box; */
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   /* white-space: pre; */
 }
 
 /* digitale klok */
@@ -47,6 +48,35 @@ body{
    margin: 0 auto;
    display: flex;
    flex-direction: column;
+}
+
+#nav{
+   display: flex;
+   justify-content: space-between;
+}
+
+#menu a{
+   color: green;
+   text-decoration: none;
+}
+
+#highscore_weergave{
+   display: none;
+   flex-direction: column;
+   border: 1px solid green;
+   width: 280px;
+   height: fit-content;
+   align-self: center;
+   z-index: 10;   
+   position: absolute;
+   top: 55px;
+   background-color: black;
+   white-space: pre;
+}
+
+#highscore_weergave span{
+   display: flex;
+   justify-content: center;
 }
 
 #galg{

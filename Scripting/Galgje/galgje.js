@@ -14,6 +14,19 @@ var button = document.getElementById("button2");
 var gebruikte_letters = document.getElementById("gebruikte_letters");
 var al_geweest = document.getElementById("al_geweest");
 var tekst = document.getElementById("tekst");
+var highscore_aan = false;
+maakHighscore();
+
+function maakHighscore() {
+   var namen = ["Wouter", "Semmi", "Gorik", "Frankie", "Derk"]
+   var highscore = ["<span>Formule score:</span><span>#juist*5 - #fout*3</span>", `<p>score \t tijd \t\t naam</p>`];
+   for (let i = 0; i < 6; i++) {
+      highscore.push(`<p>${9 + i < 10 ? `0${9 + i}` : 9 + i}\t\t ${2 + i}:00 \t ${namen[Math.floor(Math.random() * namen.length)]}</p>`)
+   }
+   highscore = highscore.splice(0, 7)
+   // console.log(highscore_arr);
+   localStorage.setItem("highscore_arr", JSON.stringify(highscore))
+}
 
 class Galgje {
    randomWoord() {
@@ -95,6 +108,7 @@ class Galgje {
    }
 
    lose() {
+      this.voegScoreToe(`${10}\t\t ${2}:30 \t Test\n`)
       input.innerHTML = `<div class="einde"><h3>GAME OVER - Computer wint</h3><p>Het juiste woord was ${this.oplossing.join("")}</p><img src="./img/you_lose.png" alt=""><br><button onClick=history.go(0);>opnieuw</button></div>`
    }
 
@@ -133,6 +147,33 @@ class Galgje {
          this.win();
       }
    }
+
+   voegScoreToe(string) {
+      var highscore = JSON.parse(localStorage.getItem("highscore_arr"));
+      highscore.push(string);
+      var highscore_tekst = highscore.splice(0, 2);
+      highscore = highscore.sort();
+      highscore = highscore_tekst.concat(highscore).splice(0, 7);
+      console.log(highscore.join(""));
+      highscore_weergave.innerHTML = highscore.join("");
+      localStorage.setItem("highscore_arr", JSON.stringify(highscore))
+      toonHighscore();
+   }
+}
+
+function toonHighscore() {
+   var highscore = JSON.parse(localStorage.getItem("highscore_arr"));
+   var highscore_weergave = document.getElementById("highscore_weergave");
+   if (highscore_aan === false) {
+      highscore_aan = true;
+      highscore_weergave.style.display = "block"
+   } else {
+      highscore_aan = false;
+      highscore_weergave.style.display = "none"
+   }
+   console.log(highscore.join(""));
+   highscore_weergave.innerHTML = highscore.join("");
+   localStorage.setItem("highscore_arr", JSON.stringify(highscore))
 }
 
 var test = new Galgje();
@@ -153,15 +194,3 @@ function game(e) {
 }
 
 document.addEventListener("keydown", game, false);
-
-// button.addEventListener("click", () => game(test));
-// test.opbouwGalgje(0);
-// test.opbouwGalgje(1);
-// test.opbouwGalgje(2);
-// test.opbouwGalgje(3);
-// test.opbouwGalgje(4);
-// test.opbouwGalgje(5);
-// test.opbouwGalgje(6);
-// test.opbouwGalgje(7);
-// test.opbouwGalgje(8);
-// test.opbouwGalgje(9);
